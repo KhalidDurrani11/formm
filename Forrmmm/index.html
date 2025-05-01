@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registration Form - SMIT</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<style>
+    body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  background: white;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  max-height: 60px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: #007b5e;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row input,
+.form-row select,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #a4ceaa;
+  border-radius: 4px;
+}
+
+.upload-section {
+  margin-top: 15px;
+}
+
+.upload-section input {
+  margin-top: 5px;
+}
+
+.terms {
+  font-size: 0.9em;
+  color: #333;
+  padding-left: 20px;
+}
+
+.captcha {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+button {
+  padding: 12px;
+  background-color: #007b5e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+</style>
+<body>
+  <div class="container">
+    <header>
+      <img src="logo_saylaniwelfareusa..png" alt="SMIT Logo" class="logo"/>
+      <h2>Registration Form - SMIT</h2>
+    </header>
+
+    <form class="form">
+      <div class="form-row">
+
+        <select required>
+            <option>Select country</option>
+            <option>Pakistan</option>
+            <option>Turkey</option>
+        </select>
+
+        <select required>
+            <option>Select city</option>
+            <option>Quetta</option>
+            <option>Karachi</option>
+            <option>Peshawar</option>
+        </select>
+
+      </div>
+
+      <div class="form-row">
+        <select required>
+            <option>Select course or event</option>
+            <option>Web and App Development</option>
+            <option>Graphic Designing</option>
+            <option>Generative AI and Chatbot Development</option>
+        </select>
+
+
+        <select required>
+            <option>Select your computer proficiency</option>
+            <option>None</option>
+            <option>Beginner</option>
+            <option>Intermediate</option>
+            <option>Advanced</option>
+            
+        </select>
+
+      </div>
+
+      <div class="form-row">
+        <input type="text" placeholder="Full name" required />
+        <input type="text" placeholder="Father name" required />
+      </div>
+
+      <div class="form-row">
+        <input type="email" placeholder="Email" required />
+        <input type="tel" placeholder="Phone" required />
+      </div>
+
+      <div class="form-row">
+        <input type="text" placeholder="CNIC" required />
+        <input type="text" placeholder="Father’s CNIC (optional)" />
+      </div>
+
+      <div class="form-row">
+        <input type="date" placeholder="Date of birth" required />
+
+
+        <select required>
+            <option>Select gender</option>
+            <option>male</option>
+            <option>Female</option>
+
+        </select>
+
+
+      </div>
+
+      <input type="text" placeholder="Address" required />
+
+      <div class="form-row">
+        <input type="text" placeholder="Last qualification" required />
+
+        <select required>
+            <option>Do you have a Laptop?</option>
+            <option>Yes</option>
+            <option>No</option>
+
+        </select>
+
+      </div>
+
+      <div class="upload-section">
+        <label>Picture</label>
+        <input type="file" />
+        <p>White or blue background, JPG/PNG, max 1MB</p>
+      </div>
+
+      <ul class="terms">
+        <li>I hereby declare that all data is true...</li>
+        <li>I accept the rules...</li>
+        <li>Admission may be canceled...</li>
+        <li>I will complete the required project...</li>
+        <li>Female students must wear hijab.</li>
+      </ul>
+
+      <div class="captcha">
+        <input type="checkbox" required /> I'm not a robot
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>
