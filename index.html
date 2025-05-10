@@ -2,207 +2,592 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Registration Form - SMIT</title>
+  <title>Saylani SMIT Registration & Student Card</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    /* --- Reset & Body --- */
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f8f9fa;
       margin: 0;
-      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa;
+      color: #222;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      background: white;
-      padding: 30px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    header {
+    /* --- Header --- */
+    .header {
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 16px 0;
       text-align: center;
-      margin-bottom: 30px;
+      position: relative;
+    }
+    .header img {
+      height: 48px;
+      vertical-align: middle;
+    }
+    .header-title {
+      display: inline-block;
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: #1c7ed6;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    .student-portal-btn {
+      position: absolute;
+      right: 32px;
+      top: 20px;
+      background: #1c7ed6;
+      color: #fff;
+      border: none;
+      padding: 7px 18px;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 0.95rem;
     }
 
-    .logo {
-      max-height: 60px;
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      color: #007b5e;
-      font-size: 1.5rem;
-    }
-
-    .form {
+    /* --- Navigation --- */
+    .nav {
       display: flex;
-      flex-direction: column;
-      gap: 15px;
+      justify-content: center;
+      gap: 32px;
+      margin: 18px 0 10px 0;
+      font-size: 1.05rem;
+    }
+    .nav a {
+      text-decoration: none;
+      color: #1c7ed6;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 3px;
+      transition: border 0.2s;
+    }
+    .nav a.active,
+    .nav a:hover {
+      border-bottom: 2px solid #1c7ed6;
     }
 
-    .form-row {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
+    /* --- Form Container --- */
+    .form-container {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      max-width: 950px;
+      margin: 32px auto;
+      padding: 32px 24px 24px 24px;
     }
-
-    .form-row input,
-    .form-row select,
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    input[type="date"],
-    select {
-      flex: 1 1 100%;
-      padding: 10px;
-      border: 1px solid #a4ceaa;
-      border-radius: 4px;
-      font-size: 1rem;
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px 18px;
     }
-
-    @media (min-width: 600px) {
-      .form-row input,
-      .form-row select {
-        flex: 1 1 48%;
+    @media (max-width: 800px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+      .header-title {
+        font-size: 1.1rem;
+      }
+      .student-portal-btn {
+        position: static;
+        float: right;
+        margin-top: 10px;
       }
     }
-
+    label {
+      font-weight: 500;
+      margin-bottom: 5px;
+      display: block;
+      color: #444;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    select,
     input[type="file"] {
-      padding: 5px;
+      width: 100%;
+      padding: 8px 10px;
+      border: 1.5px solid #8fd14f;
+      border-radius: 5px;
+      font-size: 1rem;
+      background: #fafbfc;
+      transition: border 0.2s;
+      box-sizing: border-box;
     }
-
-    .upload-section {
-      margin-top: 15px;
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="date"]:focus,
+    select:focus {
+      border-color: #1c7ed6;
+      outline: none;
     }
-
-    .upload-section input {
-      margin-top: 5px;
+    input[type="file"] {
+      border: none;
+      background: none;
+      padding-left: 0;
     }
-
+    .full-width {
+      grid-column: 1 / -1;
+    }
+    .picture-note {
+      font-size: 0.94rem;
+      color: #666;
+      margin-top: 2px;
+      margin-bottom: 9px;
+      line-height: 1.2;
+    }
     .terms {
-      font-size: 0.9em;
-      color: #333;
-      padding-left: 20px;
+      font-size: 0.93rem;
+      margin: 12px 0 0 0;
+      line-height: 1.3;
+      color: #444;
     }
-
-    .captcha {
+    .checkbox-row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-top: 15px;
+      gap: 8px;
+      margin: 10px 0 0 0;
     }
-
-    button {
-      padding: 12px;
-      background-color: #007b5e;
-      color: white;
+    .submit-btn {
+      grid-column: 1 / -1;
+      background: #1c7ed6;
+      color: #fff;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
+      padding: 13px 0;
+      font-size: 1.12rem;
+      font-weight: 600;
+      margin-top: 12px;
       cursor: pointer;
-      font-weight: bold;
-      margin-top: 10px;
-      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover {
+      background: #1864ab;
     }
 
-    button:hover {
-      background-color: #005a4a;
+    /* --- Student Card --- */
+    .card-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      margin: 40px 0 30px 0;
+    }
+    .id-card {
+      width: 290px;
+      height: 420px;
+      background: #fff;
+      border: 2.5px solid #1c7ed6;
+      border-radius: 10px;
+      position: relative;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      overflow: hidden;
+    }
+    .id-card .corner {
+      position: absolute;
+      width: 100%;
+      height: 30px;
+      left: 0;
+    }
+    .id-card .corner.top {
+      top: 0;
+      background: linear-gradient(120deg, #1c7ed6 75%, #8fd14f 100%);
+    }
+    .id-card .corner.bot {
+      bottom: 0;
+      background: linear-gradient(-60deg, #8fd14f 15%, #1c7ed6 100%);
+    }
+    .id-card .logo {
+      margin-top: 38px;
+      width: 145px;
+    }
+    .id-card .subtitle {
+      margin: 8px 0 0 0;
+      font-size: 1.01rem;
+      font-weight: bold;
+      color: #1c7ed6;
+      letter-spacing: 0.02em;
+      text-align: center;
+      white-space: pre-line;
+      line-height: 1.2;
+    }
+    .id-card .photo {
+      display: block;
+      margin: 18px auto 0 auto;
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #8fd14f;
+      background: #e9ecef;
+    }
+    .id-card .student-name {
+      text-align: center;
+      margin: 20px 0 0 0;
+      font-size: 1.14rem;
+      font-weight: bold;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+    .id-card .course {
+      text-align: center;
+      margin: 7px 0 0 0;
+      font-size: 1.01rem;
+    }
+    .id-card .roll {
+      text-align: center;
+      margin: 7px 0 0 0;
+      font-size: 1.09rem;
+      font-weight: bold;
+      letter-spacing: 0.02em;
+    }
+    /* Back Side */
+    .id-card.back {
+      padding: 0 0 0 0;
+    }
+    .id-card .back-content {
+      padding: 52px 20px 15px 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .id-card .info-row {
+      font-size: 1.02rem;
+      margin-bottom: 7px;
+      text-transform: uppercase;
+    }
+    .id-card .info-row strong {
+      display: inline-block;
+      width: 94px;
+      font-weight: 600;
+      color: #444;
+    }
+    .id-card .qr {
+      display: block;
+      margin: 18px auto 0 auto;
+      width: 80px;
+      height: 80px;
+      border-radius: 6px;
+      border: 1.5px solid #1c7ed6;
+      background: white;
+    }
+    .id-card .note {
+      margin-top: 9px;
+      font-size: 0.97rem;
+      color: #444;
+      text-align: left;
+      line-height: 1.3;
+      white-space: pre-line;
+    }
+    .id-card .issuing {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 0.96rem;
+      color: #222;
+      font-weight: 600;
+    }
+
+    /* --- Instructions --- */
+    .instructions {
+      max-width: 950px;
+      margin: 38px auto 0 auto;
+      background: #fff;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 18px 18px 8px 18px;
+      font-size: 1rem;
+      line-height: 1.4;
+      color: #222;
+    }
+    .instructions h3 {
+      color: #d90429;
+      margin-bottom: 12px;
+      font-size: 1.15rem;
+    }
+    .instructions ul {
+      margin: 0 0 0 18px;
+      padding: 0;
+    }
+    .instructions li {
+      margin-bottom: 7px;
+    }
+    .instructions .address {
+      font-size: 0.98rem;
+      margin-top: 8px;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 900px) {
+      .form-container,
+      .instructions {
+        max-width: 95vw;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .card-wrap {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    @media (max-width: 650px) {
+      .id-card {
+        width: 98vw;
+        max-width: 320px;
+        height: auto;
+        min-height: 390px;
+      }
+      .instructions {
+        max-width: 98vw;
+      }
+      form {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
+  <!-- QR Code Generator -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <img src="logo_saylaniwelfareusa..png" alt="SMIT Logo" class="logo"/>
-      <h2>Registration Form - SMIT</h2>
-    </header>
-
-    <form class="form">
-      <div class="form-row">
-        <select required>
-          <option>Select country</option>
-          <option>Pakistan</option>
-          <option>Turkey</option>
-        </select>
-        <select required>
-          <option>Select city</option>
-          <option>Quetta</option>
-          <option>Karachi</option>
-          <option>Peshawar</option>
-        </select>
-      </div>
-
-      <div class="form-row">
-        <select required>
-          <option>Select course or event</option>
-          <option>Web and App Development</option>
-          <option>Graphic Designing</option>
-          <option>Generative AI and Chatbot Development</option>
-        </select>
-        <select required>
-          <option>Select your computer proficiency</option>
-          <option>None</option>
-          <option>Beginner</option>
-          <option>Intermediate</option>
-          <option>Advanced</option>
+  <!-- Header -->
+  <div class="header">
+    <img src="logo_saylaniwelfareusa..png" alt="Saylani Logo" />
+    <span class="header-title">Registration Form - SMIT</span>
+    <button class="student-portal-btn">Student portal</button>
+  </div>
+  <!-- Navigation -->
+  <div class="nav">
+    <a href="#" class="active">Registration</a>
+    <a href="#">Download ID Card</a>
+    <a href="#">Results</a>
+  </div>
+  <!-- Form -->
+  <div class="form-container">
+    <form id="registrationForm" autocomplete="off" enctype="multipart/form-data" novalidate>
+      <div>
+        <label for="country">Select country</label>
+        <select name="country" id="country" required>
+          <option value="">Select country</option>
+          <option value="Pakistan">Pakistan</option>
+          <option value="Turkey">Turkey</option>
         </select>
       </div>
-
-      <div class="form-row">
-        <input type="text" placeholder="Full name" required />
-        <input type="text" placeholder="Father name" required />
-      </div>
-
-      <div class="form-row">
-        <input type="email" placeholder="Email" required />
-        <input type="tel" placeholder="Phone" required />
-      </div>
-
-      <div class="form-row">
-        <input type="text" placeholder="CNIC" required />
-        <input type="text" placeholder="Father’s CNIC (optional)" />
-      </div>
-
-      <div class="form-row">
-        <input type="date" placeholder="Date of birth" required />
-        <select required>
-          <option>Select gender</option>
-          <option>Male</option>
-          <option>Female</option>
+      <div>
+        <label for="city">Select city</label>
+        <select name="city" id="city" required>
+          <option value="">Select city</option>
+          <option value="Quetta">Quetta</option>
+          <option value="Karachi">Karachi</option>
+          <option value="Peshawar">Peshawar</option>
         </select>
       </div>
-
-      <input type="text" placeholder="Address" required />
-
-      <div class="form-row">
-        <input type="text" placeholder="Last qualification" required />
-        <select required>
-          <option>Do you have a Laptop?</option>
-          <option>Yes</option>
-          <option>No</option>
+      <div>
+        <label for="course">Select course or event</label>
+        <select name="course" id="course" required>
+          <option value="">Select course or event</option>
+          <option value="Web and Mobile Application">Web and Mobile Application</option>
+          <option value="Graphic Designing">Graphic Designing</option>
+          <option value="Generative AI and Chatbot Development">Generative AI and Chatbot Development</option>
         </select>
       </div>
-
-      <div class="upload-section">
-        <label>Picture</label>
-        <input type="file" />
-        <p>White or blue background, JPG/PNG, max 1MB</p>
+      <div>
+        <label for="proficiency">Select your computer proficiency</label>
+        <select name="proficiency" id="proficiency" required>
+          <option value="">Select your computer proficiency</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Expert">Expert</option>
+        </select>
       </div>
-
-      <ul class="terms">
-        <li>I hereby declare that all data is true...</li>
-        <li>I accept the rules...</li>
-        <li>Admission may be canceled...</li>
-        <li>I will complete the required project...</li>
-        <li>Female students must wear hijab.</li>
-      </ul>
-
-      <div class="captcha">
-        <input type="checkbox" required /> I'm not a robot
+      <div>
+        <label for="fullname">Full name</label>
+        <input type="text" name="fullname" id="fullname" required />
       </div>
-
-      <button type="submit">Submit</button>
+      <div>
+        <label for="fathername">Father name</label>
+        <input type="text" name="fathername" id="fathername" required />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required />
+      </div>
+      <div>
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" id="phone" required />
+      </div>
+      <div>
+        <label for="cnic">CNIC</label>
+        <input type="text" name="cnic" id="cnic" required />
+      </div>
+      <div>
+        <label for="fathercnic">Father's CNIC (optional)</label>
+        <input type="text" name="fathercnic" id="fathercnic" />
+      </div>
+      <div>
+        <label for="dob">Date of birth</label>
+        <input type="date" name="dob" id="dob" required />
+      </div>
+      <div>
+        <label for="gender">Select gender</label>
+        <select name="gender" id="gender" required>
+          <option value="">Select gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+      <div class="full-width">
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address" required />
+      </div>
+      <div>
+        <label for="qualification">Last qualification</label>
+        <select name="qualification" id="qualification" required>
+          <option value="">Last qualification</option>
+          <option value="Matric">Matric</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Undergraduate">Undergraduate</option>
+          <option value="Graduate">Graduate</option>
+          <option value="Masters">Masters</option>
+          <option value="PhD">PhD</option>
+          <option value="Others">Others</option>
+        </select>
+      </div>
+      <div>
+        <label for="laptop">Do you have a Laptop?</label>
+        <select name="laptop" id="laptop" required>
+          <option value="">Do you have a Laptop?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="full-width">
+        <label for="picture">Picture</label>
+        <input type="file" name="picture" id="picture" accept="image/*" required />
+        <div class="picture-note">
+          With white or blue background<br />
+          File size must be less than 1MB<br />
+          Upload your recent passport size picture
+        </div>
+      </div>
+      <div class="full-width terms">
+        1. I hereby, solemnly declare that the data and facts mentioned herein are true and correct to the best of my knowledge. Further, I will abide by all the established and future regulations and policies of SMIT.<br />
+        2. I hereby accept the responsibilities of good conduct and guarantee that I will not be involved in any other activity, political or unethical, but learning during my stay in the program.<br />
+        3. Defaulter will render my admission canceled at any point in time.<br />
+        4. Upon completion of the course, I will complete the required project by SMIT.<br />
+        5. It's compulsory for female students to wear abaya/hijab in the class
+      </div>
+      <div class="full-width checkbox-row">
+        <input type="checkbox" id="agree" required />
+        <label for="agree">I'm not a robot</label>
+      </div>
+      <button type="submit" class="submit-btn">SUBMIT</button>
     </form>
   </div>
+
+  <!-- Student Card Output -->
+  <div id="cardOutput" class="card-wrap"></div>
+
+  <!-- Instructions -->
+  <div id="instructions" class="instructions" style="display: none;">
+    <h3>Instructions:</h3>
+    <ul>
+      <li>Please colour print of this Admit/ID card</li>
+      <li>Attestation of ID/Admit Card is extremely mandatory from SMIT</li>
+      <li>No student will be allowed to enter in Entry Test without attestation of Admit/ID Card</li>
+      <li>Bring CNIC and Last qualification Marksheet/Certification. (both original) at the time of Attestation</li>
+    </ul>
+    <div class="address">
+      <strong>Address:</strong> Directorate General, Social Welfare Department, Brewery Road, Quetta<br />
+      <strong>Google Map:</strong>
+      <a href="https://goo.gl/maps/oTtdJ7BRqxoAto2w9" target="_blank" rel="noopener">https://goo.gl/maps/oTtdJ7BRqxoAto2w9</a>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  <script>
+    function getCourseCode(course) {
+      if (course.includes("Web and Mobile")) return "WMA";
+      if (course.includes("Graphic")) return "GD";
+      if (course.includes("Generative AI")) return "GAI";
+      return "STU";
+    }
+    function getBatchName(course) {
+      if (course.includes("Web and Mobile")) return "WMA BATCH (2)";
+      if (course.includes("Graphic")) return "GD BATCH (2)";
+      if (course.includes("Generative AI")) return "GAI BATCH (2)";
+      return course + " BATCH (2)";
+    }
+    function getRandomNumber() {
+      return Math.floor(100000 + Math.random() * 900000);
+    }
+    document.getElementById("registrationForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const fullname = formData.get("fullname");
+      const fathername = formData.get("fathername");
+      const cnic = formData.get("cnic");
+      const course = formData.get("course");
+      const courseCode = getCourseCode(course);
+      const rollNo = courseCode + "-" + getRandomNumber();
+      const batchName = getBatchName(course);
+      const photoInput = formData.get("picture");
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        // Generate QR code data
+        const qrData = `Name: ${fullname}\nFather name: ${fathername}\nCNIC: ${cnic}\nCourse: ${batchName}`;
+        // Create QR code canvas
+        const qr = new QRious({
+          value: qrData,
+          size: 80,
+          background: "white",
+          foreground: "#1c7ed6",
+        });
+        // Card HTML
+        document.getElementById("cardOutput").innerHTML = `
+          <!-- Front Side -->
+          <div class="id-card">
+            <div class="corner top"></div>
+            <img src="logo_saylaniwelfareusa..png" class="logo" alt="SMIT Logo" />
+            <div class="subtitle">SAYLANI MASS IT<br>TRAINING PROGRAM</div>
+            <img src="${event.target.result}" alt="Student Photo" class="photo" />
+            <div class="student-name">${fullname.toUpperCase()}</div>
+            <div class="course">${course}</div>
+            <div class="roll">${rollNo}</div>
+            <div class="corner bot"></div>
+          </div>
+          <!-- Back Side -->
+          <div class="id-card back">
+            <div class="corner top"></div>
+            <div class="back-content">
+              <div class="info-row"><strong>Name:</strong> ${fullname.toUpperCase()}</div>
+              <div class="info-row"><strong>Father name:</strong> ${fathername.toUpperCase()}</div>
+              <div class="info-row"><strong>CNIC:</strong> ${cnic}</div>
+              <div class="info-row"><strong>Course:</strong> ${batchName}</div>
+              <img src="${qr.toDataURL()}" class="qr" alt="QR Code" />
+              <div class="note">
+                Note: This card is for SMIT premises only.<br>
+                If found please return to SMIT
+              </div>
+              <div class="issuing">Issuing authority</div>
+            </div>
+            <div class="corner bot"></div>
+          </div>
+        `;
+        document.getElementById("instructions").style.display = "block";
+        document.getElementById("cardOutput").scrollIntoView({ behavior: "smooth" });
+      };
+      if (photoInput && photoInput.size > 0) {
+        reader.readAsDataURL(photoInput);
+      }
+    });
+  </script>
 </body>
 </html>
